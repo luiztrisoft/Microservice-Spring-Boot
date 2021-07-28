@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/email")
+@RequestMapping("/api/email-cloud")
 public class EmailResource {
 
     //@ApiOperation(value = "atualizarBoletos", notes = "Atualiza um ou mais boletos")
     @CrossOrigin
-    @PostMapping("/list")
+    @PostMapping("/save-list")
     public ResponseEntity<List<EmailDto>> criarEmails(@RequestBody List<EmailDto> dtos) throws Exception {
         List<EmailDto> result = dtos;
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @PostMapping("/single")
+    @PostMapping("/save-single")
     public ResponseEntity<EmailDto> criarEmail(@RequestBody EmailDto dto) throws Exception {
         EmailDto result = dto;
         return new ResponseEntity<>(result, HttpStatus.OK);
