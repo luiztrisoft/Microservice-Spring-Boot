@@ -24,8 +24,8 @@ public Docket api() {
 
         private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("Trisoft Microservice")
-        .description("Documentação da API do orquestrador de microsserviços com Swagger")
-        .version("1.0")
-        .build();
+                .description("Documentação da API do orquestrador de microsserviços com Swagger")
+                .version("1.0")
+                .build();
         }
 }
