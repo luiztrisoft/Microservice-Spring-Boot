@@ -1,5 +1,5 @@
 # Microservice-Spring-Boot
-Comunicação entre dois serviços com Spring e Java
+Comunicação entre serviços com Spring e Java
 
-### Post na aplicação central
-http://localhost:8090/api/email
+### Swagger 
+http://localhost:9999/swagger-ui.html#/

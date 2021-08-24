@@ -1,4 +1,4 @@
-package com.trisoft.centralapp.util;
+package com.microservice.trisoft.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 public class RestUtil {
 
     private ObjectMapper objectMapper;
+
     public RestUtil() {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.registerModules(new JavaTimeModule())
@@ -62,21 +63,6 @@ public class RestUtil {
         }
     }
 
-    private RestTemplate getRestTemplate() {
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setErrorHandler(new ResponseErrorHandler() {
-            @Override
-            public boolean hasError(ClientHttpResponse response) throws IOException {
-                return !response.getStatusCode().is2xxSuccessful();
-            }
-            @Override
-            public void handleError(ClientHttpResponse response) throws IOException {
-                //Empty method
-            }
-        });
-        return restTemplate;
-    }
-
     public ResponseEntity<String> get(String url, Object body, String accessToken) throws Exception {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -93,4 +79,21 @@ public class RestUtil {
             throw new Exception(e.getMessage());
         }
     }
+
+
+    private RestTemplate getRestTemplate() {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new ResponseErrorHandler() {
+            @Override
+            public boolean hasError(ClientHttpResponse response) throws IOException {
+                return !response.getStatusCode().is2xxSuccessful();
+            }
+            @Override
+            public void handleError(ClientHttpResponse response) throws IOException {
+                //Empty method
+            }
+        });
+        return restTemplate;
+    }
+
 }

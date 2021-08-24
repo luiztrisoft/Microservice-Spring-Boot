@@ -17,6 +17,15 @@ public class EmailServiceImpl {
     @Value("${url.emailcloud}")
     private String emailCloudUrl;
 
+    @Value("${url.email.service}")
+    private String emailService;
+
+    public String getAllEmails() throws Exception{
+        ResponseEntity<String> result = restUtil.get(emailService.concat("/emails"), null, null);
+        return result.getBody();
+    }
+
+
     @Autowired
     private RestUtil restUtil;
 
