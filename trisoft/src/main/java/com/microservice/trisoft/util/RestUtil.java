@@ -80,6 +80,25 @@ public class RestUtil {
         }
     }
 
+    public ResponseEntity<byte[]> postReturnByte(String url, Object body, String accessToken) throws Exception {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+//        if (accessToken != null) {
+//            headers.set(AUTHORIZATION, getBearer(accessToken));
+//        }
+
+        // Converte o dto para JSON
+        String json = objectMapper.writeValueAsString(body);
+        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+        RestTemplate restTemplate = getRestTemplate();
+        restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
+        try {
+            return restTemplate.exchange(url, HttpMethod.POST, entity, byte[].class);
+        } catch (Exception e) {
+            throw new Exception();
+        }
+    }
 
     private RestTemplate getRestTemplate() {
         RestTemplate restTemplate = new RestTemplate();
