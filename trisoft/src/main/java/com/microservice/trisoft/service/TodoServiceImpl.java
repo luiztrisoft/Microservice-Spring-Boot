@@ -1,5 +1,7 @@
 package com.microservice.trisoft.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.microservice.trisoft.service.dto.TodoDto;
 import com.microservice.trisoft.service.facade.Facade;
 import com.microservice.trisoft.util.RestUtil;
@@ -30,10 +32,10 @@ public class TodoServiceImpl {
         return result.getBody();
     }
 
-    public String getTodoByUuid() throws Exception{
-        TodoDto dto = new TodoDto("c78c58ab-0f42-4696-a390-53c0c981de84");
-        ResponseEntity<String> result =  restUtil.post(todoMicroserviceUrl.concat("/find-by-uuid"), dto, null);
-        return result.getBody();
+    public TodoDto getTodoByUuid() throws Exception{
+        ResponseEntity<String> result =  restUtil.post(todoMicroserviceUrl.concat("/find-by-uuid"), new TodoDto("c78c58ab-0f42-4696-a390-53c0c981de84"), null);
+        Gson g = new Gson();
+        return g.fromJson(result.getBody(), TodoDto.class);
     }
 
 }

@@ -27,7 +27,7 @@ public class TodoResource {
     }
 
     @GetMapping("/uuid")
-    public ResponseEntity<String> getTodoByUuid() throws Exception{
+    public ResponseEntity<TodoDto> getTodoByUuid() throws Exception{
         return ResponseEntity.ok(facade.service.todoService.getTodoByUuid());
     }
 }

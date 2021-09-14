@@ -7,5 +7,5 @@ import org.springframework.data.repository.query.Param;
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     Todo findByUuid(@Param("uuid")String uuid);
-    
+
 }
